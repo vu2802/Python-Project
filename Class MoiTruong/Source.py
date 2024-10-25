@@ -26,3 +26,13 @@ class MoiTruong:
     def ve_cac_phan_tu(self, ran, thuc_an):
 
     def kiem_tra_game_over(self, ran):
+        dau = ran.body[0]
+        if dau[0] >= self.rong_cua_so or dau[0] < 0 or dau[1] >= self.cao_cua_so or dau[1] < 0:
+            return True  # Game over nếu đầu rắn va chạm với tường
+
+        # Kiểm tra va chạm với chính mình
+        if dau in ran.body[1:]:
+            return True
+
+        # Nếu không có va chạm, trò chơi tiếp tục
+        return False
