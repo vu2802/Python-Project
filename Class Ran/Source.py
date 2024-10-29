@@ -1,5 +1,6 @@
 import pygame
 import random
+import keyboard
 
 pygame.init()
 
@@ -23,11 +24,57 @@ class Ran:
         self.huong_thay_doi = self.huong
     
     def thay_doi_huong(self, huong):
+        while True:
+            if keyboard.is_pressed("up"):
+                self.huong_thay_doi = 'LEN'
+
+            elif keyboard.is_pressed("down"):
+                self.huong_thay_doi = 'XUONG'
+
+            elif keyboard.is_pressed("left"):
+                self.huong_thay_doi = 'TRAI'
+
+            elif keyboard.is_pressed("right"):
+                self.huong_thay_doi = 'PHAI'
+
+            elif keyboard.is_pressed("esc"):
+                break
 
     def di_chuyen(self):
-    
+        self.thay_doi_huong()
+        self.huong = self.huong_thay_doi
+
+        x,y = self.vi_tri[0]
+
+        if self.huong == 'LEN':
+            y += 20
+
+        elif self.huong == 'XUONG':
+            y -= 20
+
+        elif self.huong == 'TRAI':
+            x -= 20
+
+        elif self.huong == 'PHAI':
+            x += 20
+
+        self.vi_tri.insert(0, (x,y))
+        self.vi_tri.pop()
+
+        
     def tang_chieu_dai(self):
+        x,y = self.vi_tri[2]
+        if '''Hàm ăn thức ăn''':
+            self.vi_tri.append((x,y))
     
     def kiem_tra_va_cham(self):
+        x,y = self.vi_tri[0]
+
+        if (x,y) in self.vi_tri[1:]:
+            return False
+        
+        return True
 
     def lay_vi_tri_dau(self):
+        return self.vi_tri[0]
+   
